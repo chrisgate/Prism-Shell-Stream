@@ -19,9 +19,10 @@ namespace PrismSample
             try
             {
                 InitializeComponent();
-                var shell = Container.Resolve<MainPage>();
-                MainPage = shell;
-                var result = await NavigationService.NavigateAsync("HomePage");
+                UseShellNavigation<MainPage, ShellPrismNavigationService>().NavigateAsync("HomePage");
+                //var shell = Container.Resolve<MainPage>();
+                //MainPage = shell;
+                //var result = await NavigationService.NavigateAsync("HomePage");
 
                 if (!result.Success)
                 {
@@ -36,7 +37,7 @@ namespace PrismSample
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<INavigationService, ShellPrismNavigationService>();
+            //containerRegistry.RegisterSingleton<INavigationService, ShellPrismNavigationService>();
             containerRegistry.RegisterForNavigation<NavigationPage>();
             // containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<HomePage, HomePageViewModel>();
